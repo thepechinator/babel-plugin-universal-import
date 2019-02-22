@@ -29,7 +29,11 @@ function setHasPlugin() {
       var weakId = require.resolveWeak('react-universal-component')
       universal = __webpack_require__(weakId)
     } else {
-      universal = module.require('react-universal-component')
+      // universal = module.require('react-universal-component')
+      // This makes things work with our partial hydration. With the above
+      // approach, any import() calls seem to require react and react-universal
+      var pkg = 'react-universal-component'
+      universal = module.require(pkg)
     }
 
     if (universal) {
